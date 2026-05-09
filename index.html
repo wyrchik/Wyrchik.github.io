@@ -12,10 +12,25 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0f0f23 100%);
             min-height: 100vh;
-            color: #333;
+            color: #e0e0ff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 200, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 0, 200, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -24,188 +39,397 @@
             padding: 20px;
         }
 
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+                box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 20px rgba(0, 255, 204, 0.1);
+            }
+            50% {
+                text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #ff00ff;
+                box-shadow: 0 0 30px rgba(0, 255, 204, 0.5), inset 0 0 30px rgba(0, 255, 204, 0.2);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) rotateY(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: #00ffcc;
+                box-shadow: 0 0 20px rgba(0, 255, 204, 0.5), inset 0 0 20px rgba(0, 255, 204, 0.1);
+            }
+            50% {
+                border-color: #ff00ff;
+                box-shadow: 0 0 30px rgba(255, 0, 255, 0.5), inset 0 0 20px rgba(255, 0, 255, 0.1);
+            }
+        }
+
         header {
-            background: white;
-            border-radius: 10px;
-            padding: 60px 40px;
+            background: rgba(10, 14, 39, 0.8);
+            border: 2px solid #00ffcc;
+            border-radius: 15px;
+            padding: 80px 40px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
+            animation: slideIn 1s ease-out, borderGlow 3s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffcc, #ff00ff, transparent);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         header h1 {
-            font-size: 3em;
-            color: #667eea;
+            font-size: 4em;
+            color: #00ffcc;
             margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 5px;
         }
 
         header .subtitle {
-            font-size: 1.3em;
-            color: #666;
+            font-size: 1.4em;
+            color: #ff00ff;
             margin-bottom: 20px;
+            animation: slideIn 1.2s ease-out;
+            text-shadow: 0 0 10px #ff00ff;
         }
 
         header .description {
-            font-size: 1.1em;
-            color: #888;
-            line-height: 1.6;
+            font-size: 1.05em;
+            color: #00ffcc;
+            line-height: 1.8;
             max-width: 600px;
             margin: 0 auto;
+            animation: slideIn 1.4s ease-out;
+            opacity: 0.9;
         }
 
         .section {
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
+            background: rgba(26, 26, 62, 0.6);
+            border: 2px solid #00ffcc;
+            border-radius: 15px;
+            padding: 50px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1.5s ease-out, borderGlow 4s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
         }
 
         .section h2 {
-            font-size: 2em;
-            color: #667eea;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #667eea;
+            font-size: 2.2em;
+            color: #00ffcc;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #ff00ff;
             padding-bottom: 15px;
+            text-shadow: 0 0 10px #00ffcc;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: glow 2.5s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .skill-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
+            background: rgba(15, 15, 35, 0.8);
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            padding: 40px;
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: floatIn 1.5s ease-out;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 204, 0.1), transparent);
+            animation: scan 3s linear infinite;
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            transform: translateY(-15px) scale(1.05);
+            border-color: #ff00ff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6), inset 0 0 20px rgba(255, 0, 255, 0.2);
+            text-shadow: 0 0 20px #ff00ff;
         }
 
         .skill-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
         }
 
         .skill-card p {
             font-size: 0.95em;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 20px;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .expertise-list {
             list-style: none;
-            margin-top: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .expertise-list li {
-            padding: 10px 0;
+            padding: 12px 0;
             font-size: 0.9em;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.3);
+            transition: all 0.3s ease;
         }
 
         .expertise-list li:last-child {
             border-bottom: none;
         }
 
+        .expertise-list li:hover {
+            color: #ff00ff;
+            transform: translateX(10px);
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
         .expertise-list li:before {
-            content: "✓ ";
-            color: #667eea;
+            content: "▶ ";
+            color: #ff00ff;
             font-weight: bold;
             margin-right: 10px;
         }
 
         .pentesting-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
+            background: rgba(26, 26, 62, 0.6);
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
         }
 
         .pentesting-section h2 {
-            color: white;
-            border-bottom: 3px solid white;
+            color: #ff00ff;
+            border-bottom: 3px solid #00ffcc;
+            text-shadow: 0 0 10px #ff00ff;
         }
 
         .pentesting-content {
-            line-height: 1.8;
+            line-height: 1.9;
             font-size: 1.05em;
+            position: relative;
+            z-index: 1;
         }
 
         .pentesting-content p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            animation: slideIn 1.8s ease-out;
         }
 
         .focus-areas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .focus-item {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid white;
+            background: rgba(15, 15, 35, 0.8);
+            border-left: 4px solid #00ffcc;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            animation: floatIn 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .focus-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .focus-item:hover {
+            border-left-color: #ff00ff;
+            background: rgba(15, 15, 35, 0.95);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+            transform: translateX(10px);
+        }
+
+        .focus-item:hover::before {
+            left: 100%;
         }
 
         .focus-item strong {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #00ffcc;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+        }
+
+        .focus-item p {
+            font-size: 0.85em;
+            opacity: 0.8;
         }
 
         footer {
             text-align: center;
-            color: white;
-            padding: 30px;
+            color: #00ffcc;
+            padding: 40px;
             font-size: 0.95em;
+            border-top: 2px solid #00ffcc;
+            margin-top: 50px;
+            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 10px #00ffcc;
         }
 
         @media (max-width: 768px) {
             header {
-                padding: 40px 20px;
+                padding: 50px 20px;
             }
 
             header h1 {
-                font-size: 2em;
+                font-size: 2.5em;
+                letter-spacing: 2px;
             }
 
             .section {
-                padding: 25px;
+                padding: 30px;
             }
 
             .section h2 {
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
 
             .skills-grid {
                 grid-template-columns: 1fr;
             }
+
+            .focus-areas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: rgba(0, 255, 204, 0.03);
+            pointer-events: none;
+            z-index: 0;
+            white-space: pre;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
+    <div class="matrix" id="matrix"></div>
+    
     <div class="container">
         <header>
-            <h1>Wyrchik</h1>
-            <p class="subtitle">Разработчик & Специалист по Информационной Безопасности</p>
+            <h1>WYRCHIK</h1>
+            <p class="subtitle">[ РАЗРАБОТЧИК & PENTESTER ]</p>
             <p class="description">
-                Специализируюсь на разработке приложений и анализе безопасности систем. 
-                Увлечён написанием качественного кода и поиском уязвимостей в информационных системах.
+                Специализируюсь на разработке приложений и глубоком анализе безопасности систем. 
+                Увлечён написанием качественного кода и поиском критических уязвимостей в информационных системах.
             </p>
         </header>
 
         <div class="section">
-            <h2>Основные навыки</h2>
+            <h2>⚡ Основные навыки</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <h3>Java</h3>
+                    <h3>JAVA</h3>
                     <p>Разработка масштабируемых приложений и систем на Java</p>
                     <ul class="expertise-list">
                         <li>OOP и дизайн-паттерны</li>
@@ -215,7 +439,7 @@
                 </div>
 
                 <div class="skill-card">
-                    <h3>Python</h3>
+                    <h3>PYTHON</h3>
                     <p>Автоматизация, анализ данных и разработка скриптов</p>
                     <ul class="expertise-list">
                         <li>Автоматизация процессов</li>
@@ -237,12 +461,12 @@
         </div>
 
         <div class="section pentesting-section">
-            <h2>Тестирование Безопасности</h2>
+            <h2>🔓 Тестирование Безопасности</h2>
             <div class="pentesting-content">
                 <p>
                     Проводлю комплексный анализ безопасности информационных систем с целью выявления 
-                    потенциальных уязвимостей и рисков. Использую как ручное тестирование, так и 
-                    автоматизированные инструменты для подробного аудита.
+                    потенциальных уязвимостей и критических рисков. Использую как ручное тестирование, так и 
+                    автоматизированные инструменты для подробного аудита и проверки защиты систем.
                 </p>
                 <p>
                     Мой подход включает анализ архитектуры системы, проверку протоколов безопасности, 
@@ -252,19 +476,19 @@
                 
                 <div class="focus-areas">
                     <div class="focus-item">
-                        <strong>Анализ Кода</strong>
+                        <strong>💻 Анализ Кода</strong>
                         <p>Проверка исходного кода на наличие уязвимостей</p>
                     </div>
                     <div class="focus-item">
-                        <strong>Сетевая Безопасность</strong>
+                        <strong>🌐 Сетевая Безопасность</strong>
                         <p>Тестирование сетевых сервисов и протоколов</p>
                     </div>
                     <div class="focus-item">
-                        <strong>Веб-приложения</strong>
+                        <strong>🔗 Веб-приложения</strong>
                         <p>Аудит безопасности веб-приложений и API</p>
                     </div>
                     <div class="focus-item">
-                        <strong>Документирование</strong>
+                        <strong>📋 Документирование</strong>
                         <p>Подробные отчёты с рекомендациями</p>
                     </div>
                 </div>
@@ -272,8 +496,35 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 Wyrchik. Все права защищены.</p>
+            <p>© 2026 WYRCHIK | STAY SECURE | CODE CLEAN | HACK SMART</p>
         </footer>
     </div>
+
+    <script>
+        // Matrix effect
+        const matrix = document.getElementById('matrix');
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        let content = '';
+        
+        for (let i = 0; i < 100; i++) {
+            for (let j = 0; j < 50; j++) {
+                content += chars[Math.floor(Math.random() * chars.length)];
+            }
+            content += '\n';
+        }
+        
+        matrix.textContent = content;
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
