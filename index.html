@@ -1,81 +1,137 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WYRCHIK // ARCHITECT</title>
-<script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-<style>
-body {
-background-color: #050505;
-color: #E0E0E0;
-font-family: 'Inter', sans-serif;
-margin: 0;
-}
-.neon-title {
-color: #fff;
-text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-}
-.bg-grid {
-position: absolute;
-inset: 0;
-background-image: linear-gradient(to right, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-linear-gradient(to bottom, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-background-size: 3rem 3rem;
-pointer-events: none;
-}
-.tg-button {
-display: inline-block;
-padding: 1rem 3rem;
-border: 1px solid #00FF41;
-color: #00FF41;
-font-weight: 700;
-text-transform: uppercase;
-letter-spacing: 0.2em;
-transition: 0.3s;
-text-decoration: none;
-}
-.tg-button:hover {
-background: #00FF41;
-color: #000;
-box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
-}
-.tech-stack {
-font-family: 'Courier New', Courier, monospace;
-color: #00FF41;
-font-size: 1.2rem;
-margin-top: 1rem;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WYRCHIK // ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #E0E0E0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .neon-title {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(0, 255, 65, 0.05) 1px, transparent 1px), 
+                              linear-gradient(to bottom, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 3rem 3rem;
+            pointer-events: none;
+        }
+
+        .tg-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 1px solid #00FF41;
+            color: #00FF41;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .tg-button:hover {
+            background: #00FF41;
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-stack {
+            font-family: 'Courier New', Courier, monospace;
+            color: #00FF41;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            min-height: 1.5em;
+        }
+    </style>
 </head>
 <body>
-<div class="relative min-h-screen flex flex-col">
-<section class="h-screen flex items-center justify-center relative">
-<div class="bg-grid"></div>
-<div class="text-center z-10 px-6">
-<h1 class="text-7xl md:text-9xl font-black uppercase mb-4 neon-title">Wyrchik</h1>
-<div class="tech-stack">> PYTHON // JAVA // HTML // CSS</div>
-<p class="text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto font-light mt-6">
-Разработчик, специалист по кибербезопасности и Hard Surface моделист.
-Создаю чистый код и проектирую <span class="text-green-500">3D-активы</span>.
-</p>
-</div>
-</section>
-<section class="py-24 bg-black/30 border-y border-green-500/5 px-6">
-<div class="max-w-4xl mx-auto space-y-12 text-gray-300 text-lg md:text-xl">
-<div class="border-l-2 border-green-500 pl-6">
-<p class="mb-6">Моя деятельность сфокусирована на стыке логического анализа и визуального проектирования. Я специализируюсь на создании отказоустойчивых систем, где каждый байт кода на <span class="text-green-500">Python</span> или <span class="text-green-500">Java</span> служит фундаментом для глобальной сетевой устойчивости.</p>
-<p class="mb-6">В области <span class="text-green-500">3D_МОДЕЛИРОВАНИЯ</span> я использую архитектурный подход: для меня форма — это функция. Я проектирую сложные структуры, оптимизированные под высоконагруженные среды, превращая хаос данных в упорядоченную визуальную геометрию.</p>
-<p>Помимо кодинга, я занимаюсь глубоким аудитом цифровых периметров. Мой подход исключает компромиссы — я ищу слабые узлы в архитектуре систем, внедряя алгоритмы, которые превращают уязвимости в защищенные крепости.</p>
-</div>
-</div>
-</section>
-<section class="py-32 pb-48 text-center">
-<h2 class="text-3xl font-bold text-white mb-10 tracking-widest uppercase">Связаться</h2>
-<a href="[https://t.me/Wyrchik](https://t.me/Wyrchik)" target="_blank" class="tg-button">
-НАПИСАТЬ В TG
-</a>
-</section>
-</div>
+
+    <div class="relative min-h-screen flex flex-col">
+        
+        <section class="h-screen flex items-center justify-center relative">
+            <div class="bg-grid"></div>
+            <div class="text-center z-10 px-6">
+                <h1 class="text-7xl md:text-9xl font-black uppercase mb-4 neon-title">Wyrchik</h1>
+                
+                <div class="tech-stack" id="typewriter"></div>
+
+                <p class="text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto font-light mt-6">
+                    Разработчик, специалист по кибербезопасности и Hard Surface моделист. 
+                    Создаю чистый код и проектирую <span class="text-green-500">3D-активы</span>.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 bg-black/50 border-y border-green-500/10 px-6">
+            <div class="max-w-4xl mx-auto space-y-12 text-gray-300 text-lg md:text-xl reveal">
+                <div class="border-l-2 border-green-500 pl-6">
+                    <p class="mb-6">Моя деятельность сфокусирована на стыке логического анализа и визуального проектирования. Я специализируюсь на создании отказоустойчивых систем, где каждый байт кода на <span class="text-green-500">Python</span> или <span class="text-green-500">Java</span> служит фундаментом для глобальной сетевой устойчивости.</p>
+                    
+                    <p class="mb-6">В области <span class="text-green-500">3D_МОДЕЛИРОВАНИЯ</span> я использую архитектурный подход: для меня форма — это функция. Я проектирую сложные структуры, оптимизированные под высоконагруженные среды, превращая хаос данных в упорядоченную визуальную геометрию.</p>
+                    
+                    <p>Помимо кодинга, я занимаюсь глубоким аудитом цифровых периметров. Мой подход исключает компромиссы — я ищу слабые узлы в архитектуре систем, внедряя алгоритмы, которые превращают уязвимости в защищенные крепости.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 pb-48 text-center reveal">
+            <h2 class="text-3xl font-bold text-white mb-10 tracking-widest uppercase">Связаться</h2>
+            <a href="https://t.me/Wyrchik" target="_blank" class="tg-button">
+                НАПИСАТЬ В TG
+            </a>
+        </section>
+
+    </div>
+
+    <script>
+        const text = "> PYTHON // JAVA // HTML // CSS";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    document.getElementById("typewriter").innerHTML = "";
+                    i = 0;
+                    typeWriter();
+                }, 3000);
+            }
+        }
+
+        function reveal() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        
+        typeWriter();
+        reveal();
+    </script>
 </body>
 </html>
