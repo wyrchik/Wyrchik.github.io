@@ -1,1 +1,0 @@
-# Wyrchik.github.io
